@@ -10,7 +10,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("🐱🐶 Cat vs Dog Classifier")
+st.title("__Cat vs Dog Classifier__")
 st.write("Upload an image and let AI classify it as a cat or dog!")
 
 @st.cache_resource
@@ -47,25 +47,25 @@ if uploaded_file is not None:
         st.image(image, caption='Uploaded Image', width='stretch')
     
     with col2:
-        with st.spinner('🔍 Analyzing image...'):
+        with st.spinner(' Analyzing image...'):
             processed_img = preprocess_image(image)
             predictions = model.predict(processed_img, verbose=0)
             predicted_class = np.argmax(predictions[0])
             confidence = predictions[0][predicted_class] * 100
             
-            st.markdown("### 🎯 Prediction")
+            st.markdown(" Prediction")
             label = class_labels[str(predicted_class)].upper()
             
             if 'CAT' in label.upper():
-                st.success(f"🐱 **{label}**")
+                st.success(f" **{label}**")
             elif 'DOG' in label.upper():
-                st.success(f"🐶 **{label}**")
+                st.success(f" **{label}**")
             else:
                 st.info(f"**{label}**")
             
             st.metric("Confidence", f"{confidence:.1f}%")
             
-            st.markdown("### 📊 Confidence Scores")
+            st.markdown("### Confidence Scores")
             for idx, prob in enumerate(predictions[0]):
                 class_name = class_labels[str(idx)].capitalize()
                 st.progress(float(prob), text=f"{class_name}: {prob*100:.1f}%")
